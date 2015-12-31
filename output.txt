@@ -1,0 +1,16 @@
+Messages
+========
+
+inline-cli.py
+  Line: 5
+    pylint: unused-import / Unused import requests
+  Line: 37
+    pylint: redefined-variable-type / Redefinition of current_line type from str to int (col 16)
+  Line: 45
+    pylint: unused-argument / Unused argument 'messages' (col 18)
+    pylint: unused-argument / Unused argument 'owner' (col 28)
+    pylint: unused-argument / Unused argument 'repo' (col 35)
+    pylint: unused-argument / Unused argument 'pr' (col 41)
+    pylint: unused-argument / Unused argument 'auth' (col 45)
+
+
