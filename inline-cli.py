@@ -59,7 +59,7 @@ def parse(filename, diff):
                 current_message_content = ''
                 continue
             # new content
-            current_message_content += line
+            current_message_content += line.lstrip()
 
     return messages
 
