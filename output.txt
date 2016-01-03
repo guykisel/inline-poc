@@ -2,15 +2,28 @@ Messages
 ========
 
 inline-cli.py
-  Line: 5
-    pylint: unused-import / Unused import requests
-  Line: 37
+  Line: 1
+    pylint: invalid-name / Invalid module name "inline-cli"
+  Line: 4
+    pylint: unused-import / Unused import pprint
+  Line: 11
+    pylint: too-many-arguments / Too many arguments (6/5)
+    pylint: invalid-name / Invalid argument name "pr"
+  Line: 12
+    pylint: invalid-name / Invalid variable name "gh" (col 4)
+  Line: 23
+    pylint: too-many-nested-blocks / Too many nested blocks (6/5) (col 4)
+  Line: 35
+    pylint: line-too-long / Line too long (104/99)
+  Line: 48
+    pylint: line-too-long / Line too long (103/99)
+  Line: 55
+    pylint: line-too-long / Line too long (103/99)
+  Line: 56
     pylint: redefined-variable-type / Redefinition of current_line type from str to int (col 16)
-  Line: 45
-    pylint: unused-argument / Unused argument 'messages' (col 18)
-    pylint: unused-argument / Unused argument 'owner' (col 28)
-    pylint: unused-argument / Unused argument 'repo' (col 35)
-    pylint: unused-argument / Unused argument 'pr' (col 41)
-    pylint: unused-argument / Unused argument 'auth' (col 45)
+  Line: 73
+    pylint: invalid-name / Invalid constant name "parser" (col 4)
+  Line: 81
+    pylint: invalid-name / Invalid constant name "args" (col 4)
 
 
