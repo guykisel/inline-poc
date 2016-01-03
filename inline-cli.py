@@ -31,7 +31,7 @@ def message(filename, line, content, diff):
                         if hunk_line.target_line_no == line:
                             return {
                                 'filename': filename,
-                                'line': position,
+                                'line': position + 1,
                                 'content': 'Line: ' + str(line) + ' \n```\n' + content.strip() + '\n```'
                             }
 
