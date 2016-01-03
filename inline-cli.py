@@ -1,23 +1,28 @@
 #!/usr/bin/env python
 
 import argparse
+import pprint
 import subprocess
 
 import github3
 
 
 def inline(filename, owner, repo, pr, user, token):
-    gh = github3.login(user, token=token)
+    print(token)
+    #token = token.encode('utf-8')
+    print(token)
+    gh = github3.GitHub(user, token=token)
     messages = parse(filename)
     post_comments(messages, owner, repo, pr, gh)
 
 
 def message(filename, line, content):
-    return {
-        'filename': filename,
-        'line': line,
-        'content': content
-    }
+    if content:
+        return {
+            'filename': filename,
+            'line': line,
+            'content': 'Line: ' + str(line) + ' \n```\n' + content.strip() + '\n```'
+        }
 
 
 def parse(filename):
@@ -48,9 +53,11 @@ def parse(filename):
 
 def post_comments(messages, owner, repo, pr, gh):
     pull_request = gh.pull_request(owner, repo, pr)
-    sha = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip()
+    sha = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip().decode('utf-8')
+    print(sha)
     for msg in messages:
         if msg:
+            pprint.pprint(msg)
             pull_request.create_review_comment(msg['content'], sha, msg['filename'], msg['line'])
 
 
@@ -59,7 +66,7 @@ if __name__ == "__main__":
     parser.add_argument('--pr', type=int, required=True)
     parser.add_argument('--owner', type=str, required=True)
     parser.add_argument('--repo', type=str, required=True)
-    parser.add_argument('--token', type=str)
+    parser.add_argument('--token')
     parser.add_argument('--user', type=str)
     parser.add_argument('--filename', type=str, required=True)
 
