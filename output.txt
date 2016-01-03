@@ -13,17 +13,19 @@ inline-cli.py
     pylint: invalid-name / Invalid variable name "gh" (col 4)
   Line: 23
     pylint: too-many-nested-blocks / Too many nested blocks (6/5) (col 4)
-  Line: 35
+  Line: 28
+    pylint: unused-variable / Unused variable 'hunk_no' (col 20)
+  Line: 36
     pylint: line-too-long / Line too long (104/99)
-  Line: 48
+  Line: 50
     pylint: line-too-long / Line too long (103/99)
-  Line: 55
+  Line: 57
     pylint: line-too-long / Line too long (103/99)
-  Line: 56
+  Line: 58
     pylint: redefined-variable-type / Redefinition of current_line type from str to int (col 16)
-  Line: 73
+  Line: 75
     pylint: invalid-name / Invalid constant name "parser" (col 4)
-  Line: 81
+  Line: 83
     pylint: invalid-name / Invalid constant name "args" (col 4)
 
 
