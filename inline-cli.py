@@ -24,16 +24,18 @@ def message(filename, line, content, diff):
         patch = unidiff.PatchSet(diff.decode('utf-8').split('\n'))
         for patched_file in patch:
             if patched_file.target_file == 'b/' + filename:
-                for hunk in patched_file:
+                offset = 1
+                for hunk_no, hunk in enumerate(patched_file):
                     for position, hunk_line in enumerate(hunk):
                         if '+' not in hunk_line.line_type:
                             continue
                         if hunk_line.target_line_no == line:
                             return {
                                 'filename': filename,
-                                'line': position + 1,
+                                'line': position + offset,
                                 'content': 'Line: ' + str(line) + ' \n```\n' + content.strip() + '\n```'
                             }
+                    offset += len(hunk) + 1
 
 
 def parse(filename, diff):
