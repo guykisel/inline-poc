@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import argparse
 import pprint
 import subprocess
@@ -7,8 +8,7 @@ import subprocess
 import github3
 import unidiff
 
-
-def inline(filename, owner, repo, pr, user, token):
+def inline(filename, owner, repo, pr, user, token, debug=False):
     gh = github3.GitHub(user, token=token)
 
     pull_request = gh.pull_request(owner, repo, pr)
@@ -16,7 +16,12 @@ def inline(filename, owner, repo, pr, user, token):
     diff = pull_request.diff()
 
     messages = parse(filename, diff)
-    post_comments(messages, pull_request, sha)
+    if not debug:
+        post_comments(messages, pull_request, sha)
+    else:
+        for m in messages:
+            if m:
+                print('file: {0}\tmsg: {1}'.format(m['filename'], m['content'].replace('\n', '')))
 
 
 def message(filename, line, content, diff):
@@ -77,6 +82,7 @@ if __name__ == "__main__":
     parser.add_argument('--token')
     parser.add_argument('--user', type=str)
     parser.add_argument('--filename', type=str, required=True)
+    parser.add_argument('--debug', action='store_true')
 
     args = parser.parse_args()
-    inline(args.filename, args.owner, args.repo, args.pr, args.user, args.token)
+    inline(args.filename, args.owner, args.repo, args.pr, args.user, args.token, args.debug)
