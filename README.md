@@ -1,4 +1,5 @@
 # inline-poc
+Quick proof of concept for https://github.com/guykisel/inline-plz
 
 
 # testing
